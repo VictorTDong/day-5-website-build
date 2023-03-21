@@ -1,0 +1,26 @@
+name: Build website
+
+on:
+  workflow_dispatch:
+    inputs:
+      version_number:
+        description: the version number
+        required: true
+      description:
+        description: description of the changes
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v2
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+
+    - name: Print inputs
+      run: echo Inputs are ${{ inputs.version_number }} ${{ inputs.description }}
